@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.community.CommunityDAO">
+	<resultMap type="Community" id="CommunityResultMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="state" property="state"/>
+		<result column="time" property="time"/>
+		<result column="readNumber" property="readNumber"/>
+		<result column="commentNumber" property="commentNumber"/>
+		<result column="userId" property="userId"/>
+	</resultMap>
+	<insert id="insert" parameterType="Community">
+		insert into t_community(title,content,state,time,readNumber,commentNumber,userId) values(#{title},#{content},#{state},#{time},#{readNumber},#{commentNumber},#{userId})
+	</insert>
+	<update id="update" parameterType="Community">
+		update t_community set title=#{title},content=#{content},state=#{state},time=#{time},readNumber=#{readNumber},commentNumber=#{commentNumber},userId=#{userId} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_community where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="CommunityResultMap">
+		select * from t_community where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="CommunityResultMap">
+		select * from t_community
+	</select>
+</mapper>

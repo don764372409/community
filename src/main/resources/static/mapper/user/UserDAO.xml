@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.user.UserDAO">
+	<resultMap type="User" id="UserResultMap">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="headImg" property="headImg"/>
+		<result column="birthday" property="birthday"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="name" property="name"/>
+		<result column="lastTime" property="lastTime"/>
+		<result column="loginTime" property="loginTime"/>
+		<result column="registerTime" property="registerTime"/>
+		<result column="lastIp" property="lastIp"/>
+		<result column="loginIp" property="loginIp"/>
+		<result column="registIp" property="registIp"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	<insert id="insert" parameterType="User">
+		insert into t_user(username,password,headImg,birthday,phone,email,name,lastTime,loginTime,registerTime,lastIp,loginIp,registIp,state) values(#{username},#{password},#{headImg},#{birthday},#{phone},#{email},#{name},#{lastTime},#{loginTime},#{registerTime},#{lastIp},#{loginIp},#{registIp},#{state})
+	</insert>
+	<update id="update" parameterType="User">
+		update t_user set username=#{username},password=#{password},headImg=#{headImg},birthday=#{birthday},phone=#{phone},email=#{email},name=#{name},lastTime=#{lastTime},loginTime=#{loginTime},registerTime=#{registerTime},lastIp=#{lastIp},loginIp=#{loginIp},registIp=#{registIp},state=#{state} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_user where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="UserResultMap">
+		select * from t_user where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="UserResultMap">
+		select * from t_user
+	</select>
+</mapper>

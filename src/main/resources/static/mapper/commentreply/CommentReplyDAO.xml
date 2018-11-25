@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.commentreply.CommentReplyDAO">
+	<resultMap type="CommentReply" id="CommentReplyResultMap">
+		<id column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="time" property="time"/>
+		<result column="userId" property="userId"/>
+		<result column="commentId" property="commentId"/>
+	</resultMap>
+	<insert id="insert" parameterType="CommentReply">
+		insert into t_comment_reply(content,time,userId,commentId) values(#{content},#{time},#{userId},#{commentId})
+	</insert>
+	<update id="update" parameterType="CommentReply">
+		update t_comment_reply set content=#{content},time=#{time},userId=#{userId},commentId=#{commentId} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_comment_reply where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="CommentReplyResultMap">
+		select * from t_comment_reply where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="CommentReplyResultMap">
+		select * from t_comment_reply
+	</select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanmaxinxi.dao.communitytype.CommunitytypeDAO">
+	<resultMap type="Communitytype" id="CommunitytypeResultMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="pId" property="pId"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	<insert id="insert" parameterType="Communitytype">
+		insert into t_communitytype(name,pId,state) values(#{name},#{pId},#{state})
+	</insert>
+	<update id="update" parameterType="Communitytype">
+		update t_communitytype set name=#{name},pId=#{pId},state=#{state} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="Long">
+		delete from t_communitytype where id=#{id}
+	</delete>
+	<select id="selectOneById" parameterType="Long" resultMap="CommunitytypeResultMap">
+		select * from t_communitytype where id=#{id}
+	</select>
+	<select id="selectAll" resultMap="CommunitytypeResultMap">
+		select * from t_communitytype
+	</select>
+</mapper>
